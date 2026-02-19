@@ -27,7 +27,7 @@ export default function DisplayForm() {
   const { data: tasks = [], isLoading, error } = useQuery({
     queryKey: ["tasks"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:3000/");
+      const res = await fetch("https://taskmanagement-system-backend.vercel.app/");
       return res.json() as Promise<Task[]>;
     },
   });

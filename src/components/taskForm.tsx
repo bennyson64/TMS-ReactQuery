@@ -32,7 +32,7 @@ export function BugReportForm() {
   const queryClient = useQueryClient()
   const {mutateAsync} = useMutation({
     mutationFn: async (data: z.infer<typeof formSchema>) => {
-      const res = await fetch("http://localhost:3000/", {
+      const res = await fetch("https://taskmanagement-system-backend.vercel.app/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
