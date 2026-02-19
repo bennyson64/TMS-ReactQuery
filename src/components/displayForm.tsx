@@ -31,8 +31,16 @@ export default function DisplayForm() {
       return res.json() as Promise<Task[]>;
     },
   });
-  if(isLoading) return <div>Loading...</div>
-  if(error) return <div>Error Occured: {error.message}</div>
+  if(isLoading) return <Card className="w-full sm:max-w-md">
+        <CardContent className="pt-6 text-muted-foreground">
+          Loading...
+        </CardContent>
+      </Card>
+  if(error) return <Card className="w-full sm:max-w-md">
+        <CardContent className="pt-6 text-muted-foreground">
+          Error Occured: Error Retriving Data
+        </CardContent>
+      </Card>
 
   if (tasks.length === 0) {
     return (

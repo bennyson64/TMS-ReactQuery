@@ -40,7 +40,7 @@ export function BugReportForm() {
       return res.json()
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["tasks"] }) // refetching
+      queryClient.invalidateQueries({ queryKey: ["tasks"] }) // refetching by automtically marking cached data as stale
       toast("Task submitted successfully")
       form.reset()
     },
