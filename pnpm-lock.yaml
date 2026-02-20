@@ -41,6 +41,9 @@ importers:
       sonner:
         specifier: ^2.0.7
         version: 2.0.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      sonnet:
+        specifier: ^0.0.1
+        version: 0.0.1
       tailwind-merge:
         specifier: ^3.4.1
         version: 3.4.1
@@ -3980,6 +3983,10 @@ packages:
     peerDependencies:
       react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
       react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+
+  sonnet@0.0.1:
+    resolution: {integrity: sha512-nEryEVHTeoROv+nDOhWEiSVCsz2NqkMuD2+OvuW0YQkmSclj8O8CzIWZFJkXCQ3zLPiiMvydtLIvOTPAi08FnA==}
+    engines: {node: '>=12'}
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -8408,6 +8415,8 @@ snapshots:
     dependencies:
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
+
+  sonnet@0.0.1: {}
 
   source-map-js@1.2.1: {}
 

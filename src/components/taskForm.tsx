@@ -21,7 +21,6 @@ const formSchema = z.object({
 
 
 export function BugReportForm() {
-  // const addTask = useTaskStore((state) => state.addTask) //zustand
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -31,12 +30,14 @@ export function BugReportForm() {
   })
   const queryClient = useQueryClient()
   const {mutateAsync} = useMutation({
+    //https://taskmanagement-system-backend.vercel.app/
     mutationFn: async (data: z.infer<typeof formSchema>) => {
       const res = await fetch("https://taskmanagement-system-backend.vercel.app/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       })
+      if (!res.ok) throw new Error("Request failed")
       return res.json()
     },
     onSuccess: () => {
@@ -45,6 +46,7 @@ export function BugReportForm() {
       form.reset()
     },
   })
+  
   async function onSubmit(data: z.infer<typeof formSchema>) {
     await mutateAsync(data)
   }

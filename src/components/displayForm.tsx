@@ -1,7 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-// import { useTaskStore } from "@/store/taskStore";
 import { useQuery } from "@tanstack/react-query";
-
+import { TaskActions } from  "@/components/taskAction";
 type Task = {
   id: string;
   title: string;
@@ -9,25 +8,12 @@ type Task = {
 };
 
 export default function DisplayForm() {
-  // // const tasks = useTaskStore((state) => state.tasks);
-  // const [tasks, setTasks] = useState<Task[]>([])   // ← local state, no store
-
-  // useEffect(() => {
-  // async function fetchTasks() {
-  //   const res = await fetch("http://localhost:3000/")
-  //   const data = await res.json()
-  //   setTasks(data)
-  //   }
-
-  //   fetchTasks()                        // ← fetch on mount
-  //   const interval = setInterval(fetchTasks, 3000)  // ← poll every 3s to pick up new tasks
-  //   return () => clearInterval(interval)
-  // }, [])
-  //replacable with tanstack query
   const { data: tasks = [], isLoading, error } = useQuery({
     queryKey: ["tasks"],
+    //https://taskmanagement-system-backend.vercel.app/
     queryFn: async () => {
       const res = await fetch("https://taskmanagement-system-backend.vercel.app/");
+      if (!res.ok) throw new Error("Request failed")
       return res.json() as Promise<Task[]>;
     },
   });
@@ -51,7 +37,7 @@ export default function DisplayForm() {
       </Card>
     );
   }
-
+  
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
@@ -68,6 +54,7 @@ export default function DisplayForm() {
               <h3 className="font-semibold">Task Description</h3>
               <p className="text-muted-foreground">{task.description}</p>
             </div>
+            <TaskActions task={task} />
           </div>
         ))}
       </CardContent>
